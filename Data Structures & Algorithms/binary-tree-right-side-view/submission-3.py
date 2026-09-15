@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        queue = deque()
+        res = []
+        if root is not None:
+            queue.append(root)
+        else:
+            return res
+        while len(queue) > 0:
+            surface_level = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                # If this is the very first node of the current level it must be the right most one
+                if i == 0:
+                    res.append(node.val)
+                # Adding right most first becasue we can pop it out first
+                if node.right:
+                    queue.append(node.right) 
+                if node.left:
+                    queue.append(node.left)
+        return res
