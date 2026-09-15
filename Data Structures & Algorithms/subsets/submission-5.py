@@ -1,0 +1,22 @@
+from typing import List
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.subset = []
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def dfs(i):
+            if i >= len(nums):
+                self.res.append(self.subset.copy())
+                return
+            
+            self.subset.append(nums[i])
+            dfs(i + 1)
+
+            self.subset.pop()
+            dfs(i + 1)
+
+            return self.subset
+
+        dfs(0) 
+        return self.res
