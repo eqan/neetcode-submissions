@@ -1,0 +1,2 @@
+-- Write your query below
+SELECT LEAST(from_id, to_id) as person1, GREATEST(to_id, from_id) as person2, COUNT(*) as call_count, SUM(duration) as total_duration FROM calls GROUP BY LEAST(from_id, to_id), GREATEST(to_id, from_id);
